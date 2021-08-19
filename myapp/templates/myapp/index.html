@@ -1,57 +1,20 @@
-<!--<form id="form" action="{% url 'myapp:index' %}" method="post">-->
-<!--    {% csrf_token %}-->
-<!--    <input name="some">-->
-<!--    <button type="submit">ssss</button>-->
-<!--</form>-->
+{% load static %}
+
+<!--CSS-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+
 <body>
 <h1>Send Form</h1>
 <a href="{% url 'myapp:all_data' %}">All Data</a>
+<div class="wrapper">
   <form id="form" action="{% url 'myapp:index' %}" method="post">
       {% csrf_token %}
     <div id="main">
-
     </div>
-    <button type="submit">Collect</button>
+    <button type="submit" class="btn btn-primary">Push</button>
+    <button onclick="toAdd();" class="btn btn-primary" type="button">+ new input</button>
   </form>
-  <button onclick="toAdd();">Add new input</button>
-
-
-
-  <script>
-
-    let counter = 2;
-    a = {'name-1': '',
-    'name-2': '',
-  }
-  function collectData(){
-    let form = document.getElementById('form').elements
-    for (key in a){
-      console.log(form[key].value)
-      a[key] = form[key].value
-    }
-  }
-    function onLoad(){
-      var mainDiv = document.getElementById('main')
-      mainDiv.innerHTML = ''
-      for (key in a) {
-        newInput = document.createElement('input')
-        newLabel = document.createElement('label')
-        newInput.name = key;
-        newInput.value = a[key];
-        newLabel.innerHTML = key;
-        newInput.style.display = 'block';
-        mainDiv.appendChild(newLabel)
-        mainDiv.appendChild(newInput)
-      }
-    }
-    function toAdd(){
-      collectData();
-      counter += 1;
-      let newName = 'name-'+ counter;
-      a[newName] = '';
-      console.log(newName, a)
-      onLoad();
-    }
-    onLoad();
-  </script>
+</div>
+<script src="{% static 'myapp/main.js' %}"></script>
 </body>
