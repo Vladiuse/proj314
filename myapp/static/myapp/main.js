@@ -1,6 +1,6 @@
     let counter = 2;
     a = {'name-1': '',
-    'name-2': '',
+ 
   }
   function collectData(){
     let form = document.getElementById('form').elements
